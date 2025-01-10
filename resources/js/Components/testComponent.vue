@@ -1,25 +1,37 @@
 <template>
-    <div class="message-model">
-        <p>{{ message }}</p>
+    <div id="app">
+        <h1>Bienvenue sur votre test Vue.js😎👍</h1>
+        <h1>{{ count }}</h1>
+        <button @click="increment">Incrémentation de 1</button>
     </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
-const message = ref("Hello from Vue.js");
+
+const count = ref(0);
+
+function increment() {
+    count.value += 1;
+}
 </script>
 
-<style scoped>
-.message-model {
-    border: 1px solid yellow;
+<style>
+#app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
     text-align: center;
-    border-radius: 10px;
-    width: 80%;
-    margin: auto;
-    background-color: yellow;
+    margin-top: 60px;
 }
-.message-model p {
-    font-weight: bold;
-    font-size: 40px;
+button {
+    background-color: #42b983;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+button:hover {
+    background-color: #369a7d;
 }
 </style>
