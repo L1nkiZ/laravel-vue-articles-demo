@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('titre');
             $table->longText('contenu')->nullable();
-            $table->string('auteur')->nullable();
             $table->integer('auteur_id')->nullable()->index();
             $table->foreign('auteur_id')->references('id')->on('auteurs');
             $table->boolean('visible')->default(true);
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('article');
+        Schema::dropIfExists('articles');
     }
 };
