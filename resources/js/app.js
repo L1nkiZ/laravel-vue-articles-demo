@@ -1,9 +1,9 @@
 import "./bootstrap";
 import { createApp } from "vue";
-import testComponent from "./components/testComponent.vue";
+import HomeComponent from "@/components/HomeComponent.vue";
 
 import "./helpers.js";
 
 const app = createApp();
-app.component("test-component", testComponent);
+app.component("home-component", HomeComponent);
 app.mount("#app");
