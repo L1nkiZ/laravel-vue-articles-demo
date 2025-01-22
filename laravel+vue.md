@@ -162,41 +162,41 @@ Nous allons maintenant créer une vue avec Vue.js pour interagir avec notre API.
 
 **Dans `resources/js` :**
 
-- **Créez un fichier `PostComponent.vue`** :
+-   **Créez un fichier `PostComponent.vue`** :
 
 ```vue
 <template>
-  <div>
-    <h1>Posts</h1>
+    <div>
+        <h1>Posts</h1>
 
-    <!-- Liste des posts -->
-    <div v-for="post in posts" :key="post.id">
-      <p>{{ post.title }} - {{ post.category.name }}</p>
-      <button @click="editPost(post.id)">Edit</button>
-      <button @click="deletePost(post.id)">Delete</button>
+        <!-- Liste des posts -->
+        <div v-for="post in posts" :key="post.id">
+            <p>{{ post.title }} - {{ post.category.name }}</p>
+            <button @click="editPost(post.id)">Edit</button>
+            <button @click="deletePost(post.id)">Delete</button>
+        </div>
+
+        <!-- Formulaire pour ajouter un post -->
+        <h2>Add New Post</h2>
+        <form @submit.prevent="createPost">
+            <input v-model="newPost.title" placeholder="Title" required />
+            <textarea
+                v-model="newPost.content"
+                placeholder="Content"
+                required
+            ></textarea>
+            <select v-model="newPost.category_id" required>
+                <option
+                    v-for="category in categories"
+                    :key="category.id"
+                    :value="category.id"
+                >
+                    {{ category.name }}
+                </option>
+            </select>
+            <button type="submit">Add Post</button>
+        </form>
     </div>
-
-    <!-- Formulaire pour ajouter un post -->
-    <h2>Add New Post</h2>
-    <form @submit.prevent="createPost">
-      <input v-model="newPost.title" placeholder="Title" required />
-      <textarea
-        v-model="newPost.content"
-        placeholder="Content"
-        required
-      ></textarea>
-      <select v-model="newPost.category_id" required>
-        <option
-          v-for="category in categories"
-          :key="category.id"
-          :value="category.id"
-        >
-          {{ category.name }}
-        </option>
-      </select>
-      <button type="submit">Add Post</button>
-    </form>
-  </div>
 </template>
 
 <script setup>
@@ -206,67 +206,67 @@ import axios from "axios";
 const posts = ref([]);
 const categories = ref([]);
 const newPost = ref({
-  title: "",
-  content: "",
-  category_id: "",
+    title: "",
+    content: "",
+    category_id: "",
 });
 
 onMounted(async () => {
-  await fetchPosts();
-  await fetchCategories();
+    await fetchPosts();
+    await fetchCategories();
 });
 
 const fetchPosts = async () => {
-  try {
-    const response = await axios.get("http://localhost/api/posts");
-    posts.value = response.data;
-  } catch (error) {
-    console.error("Error fetching posts:", error);
-  }
+    try {
+        const response = await axios.get("http://localhost/api/posts");
+        posts.value = response.data;
+    } catch (error) {
+        console.error("Error fetching posts:", error);
+    }
 };
 
 const fetchCategories = async () => {
-  try {
-    const response = await axios.get("http://localhost/api/categories");
-    categories.value = response.data;
-  } catch (error) {
-    console.error("Error fetching categories:", error);
-  }
+    try {
+        const response = await axios.get("http://localhost/api/categories");
+        categories.value = response.data;
+    } catch (error) {
+        console.error("Error fetching categories:", error);
+    }
 };
 
 const createPost = async () => {
-  try {
-    const response = await axios.post(
-      "http://localhost/api/posts",
-      newPost.value
-    );
-    posts.value.push(response.data);
-    newPost.value = { title: "", content: "", category_id: "" }; // Reset form
-  } catch (error) {
-    console.error("Error creating post:", error);
-  }
+    try {
+        const response = await axios.post(
+            "http://localhost/api/posts",
+            newPost.value
+        );
+        posts.value.push(response.data);
+        newPost.value = { title: "", content: "", category_id: "" }; // Reset form
+    } catch (error) {
+        console.error("Error creating post:", error);
+    }
 };
 
 const editPost = async (id) => {
-  const updatedContent = prompt("Enter new content");
-  try {
-    const response = await axios.put(`http://localhost/api/posts/${id}`, {
-      content: updatedContent,
-    });
-    const index = posts.value.findIndex((post) => post.id === id);
-    posts.value[index] = response.data;
-  } catch (error) {
-    console.error("Error editing post:", error);
-  }
+    const updatedContent = prompt("Enter new content");
+    try {
+        const response = await axios.put(`http://localhost/api/posts/${id}`, {
+            content: updatedContent,
+        });
+        const index = posts.value.findIndex((post) => post.id === id);
+        posts.value[index] = response.data;
+    } catch (error) {
+        console.error("Error editing post:", error);
+    }
 };
 
 const deletePost = async (id) => {
-  try {
-    await axios.delete(`http://localhost/api/posts/${id}`);
-    posts.value = posts.value.filter((post) => post.id !== id);
-  } catch (error) {
-    console.error("Error deleting post:", error);
-  }
+    try {
+        await axios.delete(`http://localhost/api/posts/${id}`);
+        posts.value = posts.value.filter((post) => post.id !== id);
+    } catch (error) {
+        console.error("Error deleting post:", error);
+    }
 };
 </script>
 ```

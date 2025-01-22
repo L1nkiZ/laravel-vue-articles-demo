@@ -2,12 +2,12 @@
 
 <template>
     <div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="#">
+                <router-link class="navbar-brand" aria-current="page" to="/">
                     <i class="fas fa-book-bookmark"></i> Introduction à Laravel
                     et Vue.js
-                </a>
+                </router-link>
                 <!-- Burger Button -->
                 <button
                     class="navbar-toggler"
@@ -24,18 +24,23 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a
+                            <router-link
                                 class="nav-link active"
                                 aria-current="page"
-                                href="#"
-                                >Accueil</a
+                                to="/"
                             >
+                                Accueil
+                            </router-link>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Auteur</a>
+                            <router-link class="nav-link" to="/auteurs">
+                                Auteur
+                            </router-link>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Article</a>
+                            <router-link class="nav-link" to="/#">
+                                Article
+                            </router-link>
                         </li>
                         <li class="nav-item">
                             <button
@@ -43,7 +48,7 @@
                                 class="btn btn-outline-secondary"
                                 href="#"
                             >
-                                <i class="fas fa-user"></i> Login
+                                <i class="fas fa-user"></i> Se conneccter
                             </button>
                             <a></a>
                         </li>
@@ -53,5 +58,3 @@
         </nav>
     </div>
 </template>
-
-<style></style>
