@@ -1,12 +1,18 @@
+<script setup>
+import { ref, inject } from "vue";
+
+const base_url = inject("base_url");
+
+import testComponent from "@/components/testComponent.vue";
+import layout from "@/components/layout.vue";
+
+const name = "App";
+</script>
+
 <template>
     <div id="app">
         <router-view> </router-view>
-        <HomeComponent />
+        <layout />
+        <testComponent />
     </div>
 </template>
-
-<script setup>
-import HomeComponent from "@/components/HomeComponent.vue";
-import { inject } from "vue";
-const name = "App";
-</script>
