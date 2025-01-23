@@ -1,8 +1,10 @@
 <template>
-    <div id="app">
+    <div class="text-center pt-5">
         <h1>Bienvenue sur votre test Vue.js😎👍</h1>
         <h1>{{ count }}</h1>
-        <button @click="increment">Incrémentation de 1</button>
+        <button type="button" class="btn btn-success" @click="increment">
+            Incrémentation de 1
+        </button>
     </div>
 </template>
 
@@ -15,22 +17,3 @@ function increment() {
     count.value += 1;
 }
 </script>
-
-<style>
-#app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    text-align: center;
-}
-button {
-    background-color: #42b983;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-button:hover {
-    background-color: #369a7d;
-}
-</style>
