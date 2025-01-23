@@ -30,37 +30,59 @@
                         </tr>
                     </thead>
 
-                    <!-- <tbody>
-							<template v-if="categories_competences.length > 0">
-								<tr v-for="categorie_competence in categories_competences">
-									<td>
-										<router-link :to="'/categories_competences/edit/'+categorie_competence.id" class="text-dark fw-bold text-hover-primary d-block fs-6">{{categorie_competence.nom}}</router-link>
-									</td>
-									<td>
-										<div class="d-flex justify-content-end flex-shrink-0">
-											<router-link :to="'/categories_competences/edit/'+categorie_competence.id" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
-												<span class="svg-icon svg-icon-3">
-													<i class="fa-solid fa-pencil"></i>
-												</span>
-											</router-link>
-											<delete-parametre-data
-												:id="categorie_competence.id"
-												:url="'categories_competences'"
-												:confirmTextHeader = "'Supprimer une catégorie de compétence'"
-												:confirmTextBody = "'Voulez-vous vraiment supprimer cette catégorie ?'"
-												v-on:deleteData = "filter"
-												>
-											</delete-parametre-data>
-										</div>
-									</td>
-								</tr>
-							</template>
-							<template v-else> -->
-                    <!-- <tr>
-									<td colspan="2" class="text-center">Aucune catégorie de compétence</td>
-								</tr>
-							</template>
-						</tbody> -->
+                    <tbody>
+                        <template v-if="auteurs.length > 0">
+                            <tr v-for="auteur in auteurs">
+                                <td>
+                                    {{ auteur.nom }}
+                                    <!-- <router-link
+                                        :to="
+                                            '/categories_competences/edit/' +
+                                            auteur.id
+                                        "
+                                        class="text-dark fw-bold text-hover-primary d-block fs-6"
+                                        >{{
+                                            categorie_competence.nom
+                                        }}</router-link
+                                    > -->
+                                </td>
+                                <!-- <td>
+                                    <div
+                                        class="d-flex justify-content-end flex-shrink-0"
+                                    >
+                                        <router-link
+                                            :to="
+                                                '/categories_competences/edit/' +
+                                                categorie_competence.id
+                                            "
+                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                                        >
+                                            <span class="svg-icon svg-icon-3">
+                                                <i
+                                                    class="fa-solid fa-pencil"
+                                                ></i>
+                                            </span>
+                                        </router-link>
+                                        <delete-parametre-data
+                                            :id="categorie_competence.id"
+                                            :url="'categories_competences'"
+                                            :confirmTextHeader="'Supprimer une catégorie de compétence'"
+                                            :confirmTextBody="'Voulez-vous vraiment supprimer cette catégorie ?'"
+                                            v-on:deleteData="filter"
+                                        >
+                                        </delete-parametre-data>
+                                    </div>
+                                </td> -->
+                            </tr>
+                        </template>
+                        <template v-else>
+                            <tr>
+                                <td colspan="2" class="text-center">
+                                    Aucun auteur trouvé
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -68,18 +90,13 @@
 </template>
 
 <script setup>
-import { useRouter, useRoute } from "vue-router";
-import { onMounted, ref, watch, inject } from "vue";
+import { onMounted, ref, inject } from "vue";
 
 /*
  * Variables
  */
 const base_url = inject("base_url");
 
-const router = useRouter();
-const route = useRoute();
-
-let all_data = ref([]);
 let loading = ref(true);
 const auteurs = ref([]);
 
@@ -89,7 +106,7 @@ const auteurs = ref([]);
 const filter = () => {
     loading.value = true;
 
-    let route = base_url + "auteurs";
+    let route = base_url + "auteurs_back";
 
     axios
         .get(route)

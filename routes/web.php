@@ -16,4 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('auteurs', App\Http\Controllers\AuteursController::class);
+Route::resource('auteurs_back', App\Http\Controllers\AuteursController::class);
+Route::resource('categories_competences', App\Http\Controllers\CategorieCompetenceController::class)->middleware('can:edit_parametres_categories_competences,App\Models\Role');
