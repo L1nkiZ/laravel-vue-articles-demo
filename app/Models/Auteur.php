@@ -9,10 +9,10 @@ class Auteur extends Model
 {
     use HasFactory;
 
-    protected $connection = 'laravel-vue-articles-demo';
-    protected $table = 'laravel-vue-articles-demo.auteurs';
+    protected $connection = 'pgsql';
+    protected $table = 'public.auteurs';
     protected $primaryKey = 'id';
-    protected $fillable = ['nom', 'nom_interne'];
+    protected $fillable = ['nom', 'nom_interne', 'image', 'created_at', 'updated_at'];
 
     public function articles()
     {

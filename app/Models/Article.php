@@ -9,13 +9,13 @@ class Article extends Model
 {
     use HasFactory;
 
-    protected $connection = 'laravel-vue-articles-demo';
-    protected $table = 'laravel-vue-articles-demo.auteurs';
+    protected $connection = 'LaravelVueDemo';
+    protected $table = 'LaravelVueDemo.auteurs';
     protected $primaryKey = 'id';
     protected $fillable = ['titre', 'contenu', 'auteur_id', 'visible'];
 
     public function article()
     {
-        return $this->belongsTo(Article::class, 'categorie_competence_id');
+        return $this->belongsTo(Article::class, 'auteur_id');
     }
 }

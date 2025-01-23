@@ -12,10 +12,10 @@ class AuteursController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         $auteurs =
-            Auteur::select('id', 'nom')->get();
+            Auteur::select('id', 'nom', 'image', 'created_at')->get();
 
         return response()->json(compact('auteurs'));
     }
