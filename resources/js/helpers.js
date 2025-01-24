@@ -58,6 +58,28 @@ const checkChampsObligatoire = (
     return errors;
 };
 
+/*
+ * Si un ou plusieurs messages du back-end, on push le ou les messages dans la variable errors
+ */
+const parseErrorMessage = (message) => {
+    let errors = [];
+    if (message != null) {
+        if (
+            (typeof message === "object" && !Array.isArray(message)) ||
+            Array.isArray(message)
+        ) {
+            Object.keys(message).map(function (objectKey, index) {
+                let value = message[objectKey];
+                errors.push(value[0]);
+            });
+        } else {
+            errors.push(message);
+        }
+    }
+
+    return errors;
+};
+
 export default function configureHelpers(app) {
     app.config.globalProperties.$base_url = base_url;
     app.provide("base_url", base_url);
@@ -66,4 +88,7 @@ export default function configureHelpers(app) {
     app.provide("showSuccessErrors", showSuccessErrors);
 
     app.provide("checkChampsObligatoire", checkChampsObligatoire);
+
+    app.config.globalProperties.parseErrorMessage = parseErrorMessage;
+    app.provide("parseErrorMessage", parseErrorMessage);
 }
