@@ -1,3 +1,5 @@
+import { notify } from "@kyvg/vue3-notification";
+
 const base_url = document.querySelector("#app").dataset.url;
 
 const showSuccessErrors = (message, type = "success") => {

@@ -1,41 +1,43 @@
 <template>
-    <div class="card mb-5 mb-xl-8">
-        <div
-            class="card-header border-0 pt-5 d-flex justify-content-between align-items-center"
-        >
-            <h3 class="card-title align-items-start flex-column">
-                <span class="card-label fw-bold fs-3 mb-1">Auteurs</span>
-            </h3>
-            <div class="d-flex align-items-center">
-                <!-- <router-link
-                    to="/auteurs/create"
-                    class="btn btn-sm btn-secondary"
-                    title="Ajouter un auteur"
-                >
-                    <i class="fa-solid fa-plus"></i>
-                    Ajouter un auteur
-                </router-link> -->
+    <loader_card_overlay :loading="loading">
+        <div class="mb-5 mb-xl-8">
+            <div
+                class="card-header border-0 pt-5 d-flex justify-content-between align-items-center"
+            >
+                <h3 class="card-title align-items-start flex-column">
+                    <span class="card-label fw-bold fs-3 mb-1">Auteurs</span>
+                </h3>
+                <div class="d-flex align-items-center">
+                    <router-link
+                        to="/auteurs/create"
+                        class="btn btn-sm btn-dark"
+                        title="Ajouter un auteur"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Ajouter un auteur
+                    </router-link>
+                </div>
             </div>
-        </div>
 
-        <div class="card-body py-3">
-            <div class="table-responsive">
-                <table
-                    class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4"
-                >
-                    <thead>
-                        <tr class="fw-bold text-muted">
-                            <th class="min-w-50px">Nom</th>
-                            <th class="min-w-100px text-end">Actions</th>
-                        </tr>
-                    </thead>
+            <div class="card-body py-3">
+                <div class="table-responsive">
+                    <table
+                        class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4"
+                        :display="!loading"
+                    >
+                        <thead>
+                            <tr class="fw-bold text-muted">
+                                <th class="min-w-50px">Nom</th>
+                                <th class="min-w-100px text-end">Actions</th>
+                            </tr>
+                        </thead>
 
-                    <tbody>
-                        <template v-if="auteurs.length > 0">
-                            <tr v-for="auteur in auteurs">
-                                <td>
-                                    {{ auteur.nom }}
-                                    <!-- <router-link
+                        <tbody>
+                            <template v-if="auteurs.length > 0">
+                                <tr v-for="auteur in auteurs">
+                                    <td>
+                                        {{ auteur.nom }}
+                                        <!-- <router-link
                                         :to="
                                             '/categories_competences/edit/' +
                                             auteur.id
@@ -45,8 +47,8 @@
                                             categorie_competence.nom
                                         }}</router-link
                                     > -->
-                                </td>
-                                <!-- <td>
+                                    </td>
+                                    <!-- <td>
                                     <div
                                         class="d-flex justify-content-end flex-shrink-0"
                                     >
@@ -73,20 +75,21 @@
                                         </delete-parametre-data>
                                     </div>
                                 </td> -->
-                            </tr>
-                        </template>
-                        <template v-else>
-                            <tr>
-                                <td colspan="2" class="text-center">
-                                    Aucun auteur trouvé
-                                </td>
-                            </tr>
-                        </template>
-                    </tbody>
-                </table>
+                                </tr>
+                            </template>
+                            <template v-else>
+                                <tr>
+                                    <td colspan="2" class="text-center">
+                                        Aucun auteur trouvé
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
+    </loader_card_overlay>
 </template>
 
 <script setup>
@@ -106,7 +109,7 @@ const auteurs = ref([]);
 const filter = () => {
     loading.value = true;
 
-    let route = base_url + "auteurs_back";
+    let route = base_url + "auteurs";
 
     axios
         .get(route)

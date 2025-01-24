@@ -2,10 +2,10 @@
     <div
         :class="
             props.loading
-                ? 'card overlay overlay-block '
-                : 'card ' + custom_class
+                ? 'card overlay overlay-block mt-4'
+                : 'card ' + custom_class + ' mt-4'
         "
-        :style="props.without_min_height != true ? 'min-height: 50vh;' : ''"
+        :style="props.without_min_height != true ? 'min-height: 40vh;' : ''"
     >
         <slot></slot>
 

@@ -33,22 +33,22 @@
                             </router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link class="nav-link" to="/auteurs">
+                            <router-link class="nav-link active" to="/auteurs">
                                 Auteur
                             </router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link class="nav-link" to="/#">
+                            <router-link class="nav-link active" to="/#">
                                 Article
                             </router-link>
                         </li>
                         <li class="nav-item">
                             <button
                                 type="button"
-                                class="btn btn-outline-secondary"
+                                class="btn btn-outline-light"
                                 href="#"
                             >
-                                <i class="fas fa-user"></i> Se conneccter
+                                <i class="fas fa-user"></i> Connexion
                             </button>
                             <a></a>
                         </li>

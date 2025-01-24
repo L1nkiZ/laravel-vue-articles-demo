@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Auteur;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
+use Validator;
 
 class AuteursController extends Controller
 {
@@ -38,7 +42,33 @@ class AuteursController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'nom' => 'required|string|max:200|unique:auteurs,nom',
+            'image' => 'nullable|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => true,
+                'message' => $validator->messages()
+            ]);
+        }
+
+        $auteur = Auteur::create([
+            'nom' => $request->nom,
+            'nom_interne' => Str::slug($request->nom, '_'),
+            'image' => $request->image,
+        ]);
+
+        if ($auteur) {
+            return response()->json([
+                'error' => false,
+                'message' => 'L\'auteur a été créé avec succès',
+                'auteur' => $auteur
+            ]);
+        }
+
+        return response()->json($this->error);
     }
 
     /**

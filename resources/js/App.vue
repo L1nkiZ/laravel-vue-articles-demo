@@ -1,14 +1,19 @@
 <script setup>
-import { ref, inject } from "vue";
-
-const base_url = inject("base_url");
-console.log(base_url);
-
 import layout from "@/components/layout.vue";
 </script>
 
 <template>
     <div>
         <layout />
+        <notifications
+            group="success_error"
+            position="bottom left"
+            width="500"
+        />
+        <notifications
+            group="notifications"
+            position="bottom right"
+            width="500"
+        />
     </div>
 </template>
