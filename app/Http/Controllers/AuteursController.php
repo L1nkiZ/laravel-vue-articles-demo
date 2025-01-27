@@ -19,7 +19,9 @@ class AuteursController extends Controller
     public function index()
     {
         $auteurs =
-            Auteur::select('id', 'nom', 'image', 'created_at')->get();
+            Auteur::select('id', 'nom', 'image', 'created_at')
+            ->orderBy('nom', 'asc')
+            ->get();
 
         return response()->json(compact('auteurs'));
     }
