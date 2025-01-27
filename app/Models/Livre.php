@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Article extends Model
+class Livre extends Model
 {
     use HasFactory;
 
-    protected $connection = 'LaravelVueDemo';
-    protected $table = 'LaravelVueDemo.livres';
+    protected $connection = 'pgsql';
+    protected $table = 'public.auteurs';
     protected $primaryKey = 'id';
     protected $fillable = ['titre', 'contenu', 'auteur_id', 'visible'];
 
-    public function article()
+    public function auteur()
     {
-        return $this->belongsTo(Article::class, 'auteur_id');
+        return $this->belongsTo(Auteur::class, 'auteur_id');
     }
 }
