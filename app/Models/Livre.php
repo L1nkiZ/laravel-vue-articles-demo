@@ -10,7 +10,7 @@ class Article extends Model
     use HasFactory;
 
     protected $connection = 'LaravelVueDemo';
-    protected $table = 'LaravelVueDemo.auteurs';
+    protected $table = 'LaravelVueDemo.livres';
     protected $primaryKey = 'id';
     protected $fillable = ['titre', 'contenu', 'auteur_id', 'visible'];
 
