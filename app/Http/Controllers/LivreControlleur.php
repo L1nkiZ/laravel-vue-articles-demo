@@ -25,6 +25,7 @@ class LivreControlleur extends Controller
             ])
             ->leftjoin('auteurs as a', 'a.id', '=', 'livres.auteur_id')
             ->select('livres.id', 'titre', 'contenu', 'auteur_id', 'a.nom as auteur_nom', 'a.image as auteur_image')
+            ->orderBy('nom', 'asc')
             ->get();
 
         return response()->json(compact('livres'));
@@ -36,7 +37,11 @@ class LivreControlleur extends Controller
      */
     public function create()
     {
-        //
+        $auteurs = Auteur::select('id', 'nom')
+            ->orderBy('nom', 'asc')
+            ->get();
+
+        return response()->json(compact('auteurs'));
     }
 
     /**
@@ -47,7 +52,35 @@ class LivreControlleur extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'titre' => 'required|string|max:100|unique:livres,nom',
+            'contenu' => 'string',
+            'auteur_id' => 'numeric|exists:auteurs,id',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => true,
+                'message' => $validator->messages()
+            ]);
+        }
+
+        $livre = Livre::create([
+            'titre' => $request->titre,
+            'nom_interne' => Str::slug($request->titre, '_'),
+            'contenu' => $request->contenu,
+            'visible' => true,
+            'auteur_id' => $request->auteur_id,
+        ]);
+
+        if ($livre) {
+            return response()->json([
+                'error' => false,
+                'message' => 'Le livre a été créé avec succès',
+            ]);
+        }
+
+        return response()->json($this->error);
     }
 
     /**

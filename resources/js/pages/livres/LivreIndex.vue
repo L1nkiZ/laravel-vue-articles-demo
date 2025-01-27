@@ -8,14 +8,14 @@
                     <span class="card-label fw-bold fs-3 mb-1">Livres</span>
                 </h3>
                 <div class="d-flex align-items-center">
-                    <!-- <router-link
+                    <router-link
                         to="/livres/create"
                         class="btn btn-sm btn-dark"
                         title="Ajouter un livre"
                     >
                         <i class="fa-solid fa-plus"></i>
                         Ajouter un livre
-                    </router-link> -->
+                    </router-link>
                 </div>
             </div>
 

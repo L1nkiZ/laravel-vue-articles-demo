@@ -32,6 +32,11 @@ const router = createRouter({
             name: "livres.index",
             component: () => import("@/pages/livres/LivreIndex.vue"),
         },
+        {
+            path: "/livres/create",
+            name: "livres.create",
+            component: () => import("@/pages/livres/LivreCreate.vue"),
+        },
     ],
 });
 
