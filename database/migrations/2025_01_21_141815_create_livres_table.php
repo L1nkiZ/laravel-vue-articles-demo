@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('livres', function (Blueprint $table) {
             $table->id();
             $table->string('titre');
+            $table->string('nom_interne', 255);
             $table->longText('contenu')->nullable();
             $table->integer('auteur_id')->nullable()->index();
             $table->foreign('auteur_id')->references('id')->on('auteurs');
