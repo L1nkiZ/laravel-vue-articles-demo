@@ -140,6 +140,24 @@ class AuteursController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $auteur = Auteur::find($id);
+
+        if ($auteur) {
+            if ($auteur->livres()->exists()) {
+                return response([
+                    'error' => true,
+                    'message' => "Un ou pSlusieurs livres sont reliées à cette auteur. Vous ne pouvez pas le supprimer."
+                ]);
+            }
+
+            // $auteur->delete();
+
+            return response()->json([
+                'error' => false,
+                'message' => 'L\'auteur a été supprimer',
+            ]);
+        }
+
+        return response()->json($this->error);
     }
 }

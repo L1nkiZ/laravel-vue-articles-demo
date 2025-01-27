@@ -14,8 +14,8 @@ class Auteur extends Model
     protected $primaryKey = 'id';
     protected $fillable = ['nom', 'nom_interne', 'image', 'created_at', 'updated_at'];
 
-    public function articles()
+    public function livres()
     {
-        return $this->hasMany(Article::class);
+        return $this->hasMany(Livre::class);
     }
 }

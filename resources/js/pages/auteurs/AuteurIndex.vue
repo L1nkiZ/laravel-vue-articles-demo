@@ -27,7 +27,7 @@
                     >
                         <thead>
                             <tr class="fw-bold text-muted">
-                                <th class="min-w-50px">Nom</th>
+                                <th class="min-w-50px text-start">Nom</th>
                                 <th class="min-w-100px">Photo de l'auteur</th>
                                 <th class="min-w-100px text-end">Actions</th>
                             </tr>
@@ -51,7 +51,7 @@
                                                     : base_url +
                                                       'assets/img/default_author.jpg'
                                             "
-                                            class="img-fluid rounded-pill"
+                                            class="rounded-pill"
                                             style="
                                                 max-width: auto;
                                                 max-height: 100px;
@@ -81,11 +81,17 @@
                                                     ></i>
                                                 </span>
                                             </router-link>
-                                            <button
+                                            <!-- <button
                                                 class="btn-danger btn btn-icon btn-bg-light btn-active-color-white btn-sm me-1"
                                             >
                                                 <i class="fas fa-trash-alt"></i>
-                                            </button>
+                                            </button> -->
+                                            <delete_data_button
+                                                :id="auteur.id"
+                                                :url="'api/auteurs'"
+                                                v-on:deleteData="getData"
+                                            >
+                                            </delete_data_button>
                                         </div>
                                     </td>
                                 </tr>
@@ -119,7 +125,7 @@ const auteurs = ref([]);
 /*
  * Fonctions
  */
-const filter = () => {
+const getData = () => {
     loading.value = true;
 
     axios
@@ -140,6 +146,6 @@ const filter = () => {
  * Mounted
  */
 onMounted(() => {
-    filter();
+    getData();
 });
 </script>
