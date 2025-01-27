@@ -150,7 +150,7 @@ class AuteursController extends Controller
                 ]);
             }
 
-            // $auteur->delete();
+            $auteur->delete();
 
             return response()->json([
                 'error' => false,
