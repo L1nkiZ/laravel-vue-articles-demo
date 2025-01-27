@@ -53,8 +53,9 @@
                                             "
                                             class="rounded-pill"
                                             style="
-                                                max-width: auto;
-                                                max-height: 100px;
+                                                width: 100px;
+                                                height: 100px;
+                                                object-fit: cover;
                                             "
                                             :alt="
                                                 auteur.image
