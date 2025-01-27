@@ -129,7 +129,7 @@ const getData = () => {
     loading.value = true;
 
     axios
-        .get("api/auteurs")
+        .get(base_url + "api/auteurs")
         .then((response) => response.data)
         .then((data) => {
             auteurs.value = data.auteurs;

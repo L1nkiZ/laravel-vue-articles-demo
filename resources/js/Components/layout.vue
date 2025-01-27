@@ -38,7 +38,7 @@
                             </router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link class="nav-link active" to="/#">
+                            <router-link class="nav-link active" to="/livres">
                                 Livre
                             </router-link>
                         </li>

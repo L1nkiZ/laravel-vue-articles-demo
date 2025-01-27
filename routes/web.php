@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('api')->group(function () {
     Route::resource('auteurs', App\Http\Controllers\AuteursController::class);
+    Route::resource('livres', App\Http\Controllers\LivreControlleur::class);
 });
 
 // Catch-all route for Vue.js

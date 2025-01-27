@@ -8,6 +8,8 @@ const router = createRouter({
             name: "home",
             component: () => import("@/pages/accueil/Accueil.vue"),
         },
+
+        // Routes pour la consultation, création et modification des auteurs
         {
             path: "/auteurs",
             name: "auteurs.index",
@@ -22,6 +24,13 @@ const router = createRouter({
             path: "/auteurs/edit/:id",
             name: "auteurs.edit",
             component: () => import("@/pages/auteurs/AuteurEdit.vue"),
+        },
+
+        // Routes pour la consultation, création et modification des livres
+        {
+            path: "/livres",
+            name: "livres.index",
+            component: () => import("@/pages/livres/LivreIndex.vue"),
         },
     ],
 });
