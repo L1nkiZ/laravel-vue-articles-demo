@@ -28,6 +28,7 @@
                         <thead>
                             <tr class="fw-bold text-muted">
                                 <th class="min-w-50px">Nom</th>
+                                <th class="min-w-100px">Photo de l'auteur</th>
                                 <th class="min-w-100px text-end">Actions</th>
                             </tr>
                         </thead>
@@ -35,14 +36,34 @@
                         <tbody>
                             <template v-if="auteurs.length > 0">
                                 <tr v-for="auteur in auteurs">
-                                    <td>
+                                    <td class="col-4">
                                         <router-link
                                             :to="'auteurs/edit/' + auteur.id"
-                                            class="text-dark fw-bold text-hover-primary d-block fs-6"
+                                            class="text-dark text-hover-primary text-decoration-none text-uppercase fs-6"
                                             >{{ auteur.nom }}
                                         </router-link>
                                     </td>
-                                    <td>
+                                    <td class="col-6">
+                                        <img
+                                            :src="
+                                                auteur.image
+                                                    ? auteur.image
+                                                    : base_url +
+                                                      'assets/img/default_author.jpg'
+                                            "
+                                            class="img-fluid rounded-pill"
+                                            style="
+                                                max-width: auto;
+                                                max-height: 150px;
+                                            "
+                                            :alt="
+                                                auteur.image
+                                                    ? 'image de l\'auteur'
+                                                    : 'image de l\'auteur par défaut'
+                                            "
+                                        />
+                                    </td>
+                                    <td class="col-2">
                                         <div
                                             class="d-flex justify-content-end flex-shrink-0"
                                         >
@@ -50,7 +71,7 @@
                                                 :to="
                                                     '/auteurs/edit/' + auteur.id
                                                 "
-                                                class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                                                class="btn btn-icon btn-primary btn-active-color-info btn-sm me-1"
                                             >
                                                 <span
                                                     class="svg-icon svg-icon-3"
