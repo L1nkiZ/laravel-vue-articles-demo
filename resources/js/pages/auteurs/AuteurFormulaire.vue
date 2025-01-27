@@ -52,10 +52,10 @@
                             </div>
                         </div>
                     </div>
-                    <submit-form-button
+                    <submit_form_button
                         :url_retour="'/auteurs'"
                         :submit_form="loading ? 'on' : 'off'"
-                    ></submit-form-button>
+                    ></submit_form_button>
                 </form>
             </div>
         </div>
