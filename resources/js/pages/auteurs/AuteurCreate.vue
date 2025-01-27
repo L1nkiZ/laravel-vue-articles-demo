@@ -33,14 +33,11 @@ const auteur = ref({
 /*
  * Fonctions
  */
-const create = (auteur) => {
+const create = (auteurData) => {
     loading.value = true;
 
-    let route = base_url + "api/auteurs",
-        auteur;
-
     axios
-        .post(route)
+        .post(base_url + "api/auteurs", auteurData)
         .then((response) => response.data)
         .then((data) => {
             if (data.error == true) {

@@ -109,11 +109,8 @@ const auteurs = ref([]);
 const filter = () => {
     loading.value = true;
 
-    let route = base_url + "api/auteurs";
-    console.log(route);
-
     axios
-        .get(route)
+        .get("api/auteurs")
         .then((response) => response.data)
         .then((data) => {
             auteurs.value = data.auteurs;
