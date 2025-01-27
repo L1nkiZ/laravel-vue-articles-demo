@@ -54,7 +54,7 @@
                                             class="img-fluid rounded-pill"
                                             style="
                                                 max-width: auto;
-                                                max-height: 150px;
+                                                max-height: 100px;
                                             "
                                             :alt="
                                                 auteur.image
