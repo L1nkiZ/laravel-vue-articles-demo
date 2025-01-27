@@ -10,7 +10,7 @@ class Livre extends Model
     use HasFactory;
 
     protected $connection = 'pgsql';
-    protected $table = 'public.auteurs';
+    protected $table = 'public.livres';
     protected $primaryKey = 'id';
     protected $fillable = ['titre', 'contenu', 'auteur_id', 'visible'];
 
