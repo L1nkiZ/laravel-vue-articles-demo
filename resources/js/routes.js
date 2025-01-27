@@ -18,6 +18,11 @@ const router = createRouter({
             name: "auteurs.create",
             component: () => import("@/pages/auteurs/AuteurCreate.vue"),
         },
+        {
+            path: "/auteurs/edit/:id",
+            name: "auteurs.edit",
+            component: () => import("@/pages/auteurs/AuteurEdit.vue"),
+        },
     ],
 });
 

@@ -93,8 +93,6 @@ const updateOrCreate = () => {
         rename_errors_columns
     );
 
-    console.log(auteur.value);
-
     if (errors.length > 0) {
         return showSuccessErrors(errors, "error");
     }

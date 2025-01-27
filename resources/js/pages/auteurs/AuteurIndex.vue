@@ -36,45 +36,37 @@
                             <template v-if="auteurs.length > 0">
                                 <tr v-for="auteur in auteurs">
                                     <td>
-                                        {{ auteur.nom }}
-                                        <!-- <router-link
-                                        :to="
-                                            '/categories_competences/edit/' +
-                                            auteur.id
-                                        "
-                                        class="text-dark fw-bold text-hover-primary d-block fs-6"
-                                        >{{
-                                            categorie_competence.nom
-                                        }}</router-link
-                                    > -->
-                                    </td>
-                                    <!-- <td>
-                                    <div
-                                        class="d-flex justify-content-end flex-shrink-0"
-                                    >
                                         <router-link
-                                            :to="
-                                                '/categories_competences/edit/' +
-                                                categorie_competence.id
-                                            "
-                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
-                                        >
-                                            <span class="svg-icon svg-icon-3">
-                                                <i
-                                                    class="fa-solid fa-pencil"
-                                                ></i>
-                                            </span>
+                                            :to="'auteurs/edit/' + auteur.id"
+                                            class="text-dark fw-bold text-hover-primary d-block fs-6"
+                                            >{{ auteur.nom }}
                                         </router-link>
-                                        <delete-parametre-data
-                                            :id="categorie_competence.id"
-                                            :url="'categories_competences'"
-                                            :confirmTextHeader="'Supprimer une catégorie de compétence'"
-                                            :confirmTextBody="'Voulez-vous vraiment supprimer cette catégorie ?'"
-                                            v-on:deleteData="filter"
+                                    </td>
+                                    <td>
+                                        <div
+                                            class="d-flex justify-content-end flex-shrink-0"
                                         >
-                                        </delete-parametre-data>
-                                    </div>
-                                </td> -->
+                                            <router-link
+                                                :to="
+                                                    '/auteurs/edit/' + auteur.id
+                                                "
+                                                class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                                            >
+                                                <span
+                                                    class="svg-icon svg-icon-3"
+                                                >
+                                                    <i
+                                                        class="fa-solid fa-pencil"
+                                                    ></i>
+                                                </span>
+                                            </router-link>
+                                            <button
+                                                class="btn-danger btn btn-icon btn-bg-light btn-active-color-white btn-sm me-1"
+                                            >
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </div>
+                                    </td>
                                 </tr>
                             </template>
                             <template v-else>

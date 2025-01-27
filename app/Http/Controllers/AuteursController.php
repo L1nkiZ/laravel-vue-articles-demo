@@ -64,7 +64,6 @@ class AuteursController extends Controller
             return response()->json([
                 'error' => false,
                 'message' => 'L\'auteur a été créé avec succès',
-                'auteur' => $auteur
             ]);
         }
 
@@ -90,7 +89,13 @@ class AuteursController extends Controller
      */
     public function edit($id)
     {
-        //
+        $auteur = Auteur::find($id);
+
+        if ($auteur) {
+            return response()->json(compact('auteur'));
+        }
+
+        return response()->json($this->error);
     }
 
     /**
@@ -102,7 +107,29 @@ class AuteursController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'nom' => 'required|string|max:200',
+            'image' => 'nullable|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => true,
+                'message' => $validator->messages()
+            ]);
+        }
+
+        $auteur = Auteur::find($id);
+
+        if ($auteur) {
+            $auteur->update($request->all());
+            return response()->json([
+                'error' => false,
+                'message' => 'L\'auteur a été modifiée avec succès',
+            ]);
+        }
+
+        return response()->json($this->error);
     }
 
     /**
