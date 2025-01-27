@@ -5,7 +5,7 @@
                 <div class="card-title">
                     <h2>
                         <i class="fas fa-plus fs-4 align-items-center"></i>
-                        {{ $route.meta.title }}
+                        Crée un auteur
                     </h2>
                 </div>
             </div>
@@ -22,8 +22,8 @@
                         <div class="col">
                             <div class="fv-row mb-7">
                                 <label class="fs-6 fw-semibold form-label mt-3">
-                                    <span class="required"
-                                        >Nom de l'auteur
+                                    <span class="required">
+                                        Nom de l'auteur
                                     </span>
                                 </label>
 
@@ -38,7 +38,7 @@
                         <div class="col">
                             <div class="fv-row mb-7">
                                 <label class="fs-6 fw-semibold form-label mt-3">
-                                    <span class="required">
+                                    <span>
                                         Image de l'auteur(lien image google)
                                     </span>
                                 </label>
