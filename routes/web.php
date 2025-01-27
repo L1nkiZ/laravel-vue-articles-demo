@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::prefix('api')->group(function () {
+    Route::resource('auteurs', App\Http\Controllers\AuteursController::class);
 });
-Route::resource('auteurs', App\Http\Controllers\AuteursController::class);
 
+// Catch-all route for Vue.js
 Route::get('/{any}', function () {
-    return view('welcome');
+    return view('home');
 })->where('any', '.*');

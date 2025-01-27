@@ -109,7 +109,8 @@ const auteurs = ref([]);
 const filter = () => {
     loading.value = true;
 
-    let route = base_url + "auteurs";
+    let route = base_url + "api/auteurs";
+    console.log(route);
 
     axios
         .get(route)
