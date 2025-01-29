@@ -25,6 +25,7 @@
                         v-for="livre in livres"
                     >
                         <div
+                            @click.prevent="showModal(livre.id)"
                             class="card text-dark card-has-bg"
                             :style="{
                                 backgroundImage: `url(${
@@ -93,10 +94,17 @@
             </section>
         </div>
     </loader_card_overlay>
+    <ModalLivreShow
+        v-if="show_modal"
+        :livre_id="livre_id"
+        v-on:hideModal="hideModal"
+    >
+    </ModalLivreShow>
 </template>
 
 <script setup>
 import { onMounted, ref, inject } from "vue";
+import ModalLivreShow from "@/pages/livres/ModalLivreShow.vue";
 
 /*
  * Variables
@@ -105,10 +113,21 @@ const base_url = inject("base_url");
 
 let loading = ref(true);
 const livres = ref([]);
+const livre_id = ref(null);
+const show_modal = ref(false);
 
 /*
  * Fonctions
  */
+const showModal = (id) => {
+    livre_id.value = id;
+    show_modal.value = true;
+};
+
+const hideModal = () => {
+    show_modal.value = false;
+};
+
 const getData = () => {
     loading.value = true;
 
@@ -117,7 +136,6 @@ const getData = () => {
         .then((response) => response.data)
         .then((data) => {
             livres.value = data.livres;
-            console.log(data);
         })
         .catch((error) => {
             console.log(error);

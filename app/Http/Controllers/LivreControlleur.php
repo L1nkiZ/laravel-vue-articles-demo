@@ -26,7 +26,7 @@ class LivreControlleur extends Controller
                 },
             ])
             ->leftjoin('auteurs as a', 'a.id', '=', 'livres.auteur_id')
-            ->select('livres.id', 'titre', 'contenu', 'auteur_id', 'livres.image')
+            ->select('livres.id', 'titre', 'auteur_id', 'livres.image')
             ->orderBy('nom', 'asc')
             ->get();
 
@@ -95,7 +95,17 @@ class LivreControlleur extends Controller
      */
     public function show($id)
     {
-        //
+        $livre = Livre::with([
+            'auteur' => function ($query) {
+                $query->select('id', 'nom', 'image');
+            },
+        ])
+            ->leftjoin('auteurs as a', 'a.id', '=', 'livres.auteur_id')
+            ->select('livres.id', 'titre', 'contenu', 'auteur_id', 'livres.image', 'contenu', 'livres.created_at')
+            ->where('livres.id', $id)
+            ->first();
+
+        return response()->json(compact('livre'));
     }
 
     /**
