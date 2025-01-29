@@ -47,7 +47,7 @@
                                         Type de roman
                                     </small>
                                     <h4 class="card-title mt-0">
-                                        <a class="text-dark">
+                                        <span class="text-dark">
                                             {{
                                                 livre.titre.length > 45
                                                     ? livre.titre.substring(
@@ -56,7 +56,7 @@
                                                       ) + "..."
                                                     : livre.titre
                                             }}
-                                        </a>
+                                        </span>
                                     </h4>
                                     <small>
                                         <i class="far fa-clock"></i>
