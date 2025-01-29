@@ -22,11 +22,11 @@ class LivreControlleur extends Controller
         $livres =
             Livre::with([
                 'auteur' => function ($query) {
-                    $query->select('id', 'nom');
+                    $query->select('id', 'nom', 'image');
                 },
             ])
             ->leftjoin('auteurs as a', 'a.id', '=', 'livres.auteur_id')
-            ->select('livres.id', 'titre', 'contenu', 'auteur_id', 'a.nom as auteur_nom', 'a.image as auteur_image')
+            ->select('livres.id', 'titre', 'contenu', 'auteur_id', 'livres.image')
             ->orderBy('nom', 'asc')
             ->get();
 
