@@ -1,4 +1,5 @@
 import { notify } from "@kyvg/vue3-notification";
+import dayjs from "dayjs";
 
 const base_url = document.querySelector("#app").dataset.url;
 
@@ -82,6 +83,27 @@ const parseErrorMessage = (message) => {
     return errors;
 };
 
+/*
+ * Converti une date en format DD/MM/YYYY
+ */
+const convertDate = (date) => {
+    if (!date) return "";
+    return dayjs(date).format("DD/MM/YYYY");
+};
+
+/*
+ * Calcul la taille d'un objet
+ */
+const objectSize = (obj) => {
+    let size = 0,
+        key;
+
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+};
+
 export default function configureHelpers(app) {
     app.config.globalProperties.$base_url = base_url;
     app.provide("base_url", base_url);
@@ -93,4 +115,10 @@ export default function configureHelpers(app) {
 
     app.config.globalProperties.parseErrorMessage = parseErrorMessage;
     app.provide("parseErrorMessage", parseErrorMessage);
+
+    app.config.globalProperties.convertDate = convertDate;
+    app.provide("convertDate", convertDate);
+
+    app.config.globalProperties.objectSize = objectSize;
+    app.provide("objectSize", objectSize);
 }
