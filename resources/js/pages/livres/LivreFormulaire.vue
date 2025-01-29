@@ -57,11 +57,11 @@
                                     <span class="required">Auteur</span>
                                 </label>
 
-                                <!-- <Multiselect
+                                <Multiselect
                                     v-model="livre.auteur_id"
                                     :options="auteurs"
                                     label="nom"
-                                    placeholder="Sélection"
+                                    placeholder="Séléctionner un auteur"
                                     selectLabel=""
                                     :searchable="true"
                                     :allow-empty="true"
@@ -69,7 +69,23 @@
                                     valueProp="id"
                                     noOptionsText="-- La liste est vide --"
                                     noResultsText="-- Aucun résultat --"
-                                /> -->
+                                />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="fv-row mb-7">
+                                <label class="fs-6 fw-semibold form-label mt-3">
+                                    <span>
+                                        Image du livre (lien image google)
+                                    </span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control form-control-solid"
+                                    :ref="refs['image']"
+                                    v-model="livre.image"
+                                />
                             </div>
                         </div>
                     </div>
@@ -85,7 +101,8 @@
 
 <script setup>
 import { ref, inject } from "vue";
-// import Multiselect from "@vueform/multiselect";
+import Multiselect from "@vueform/multiselect";
+import "@vueform/multiselect/themes/default.css";
 
 /*
  * Props & Emit & variables
@@ -101,6 +118,7 @@ const refs = {
     titre: ref(null),
     contenu: ref(null),
     auteur_id: ref(null),
+    image: ref(null),
 };
 
 /*
@@ -120,6 +138,11 @@ const updateOrCreate = () => {
     if (errors.length > 0) {
         return showSuccessErrors(errors, "error");
     }
+    console.log(livre.value);
+
     return emit("updateOrCreate", livre.value);
 };
+
+//     // image_modifier.value = false;
+//     // livre.value.image = image_defaut.value;
 </script>

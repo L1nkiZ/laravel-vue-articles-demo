@@ -33,6 +33,7 @@ const livre = ref({
     titre: null,
     contenu: null,
     auteur_id: null,
+    image: null,
 });
 
 /*

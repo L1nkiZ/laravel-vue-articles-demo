@@ -12,7 +12,7 @@ class Livre extends Model
     protected $connection = 'pgsql';
     protected $table = 'public.livres';
     protected $primaryKey = 'id';
-    protected $fillable = ['titre', 'contenu', 'auteur_id', 'visible'];
+    protected $fillable = ['titre', 'nom_interne', 'contenu', 'auteur_id', 'image', 'visible'];
 
     public function auteur()
     {

@@ -8,6 +8,8 @@ use App\Models\Livre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
+use Validator;
+
 class LivreControlleur extends Controller
 {
     /**
@@ -53,9 +55,10 @@ class LivreControlleur extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'titre' => 'required|string|max:100|unique:livres,nom',
-            'contenu' => 'string',
-            'auteur_id' => 'numeric|exists:auteurs,id',
+            'titre' => 'required|string|max:100|unique:livres,titre',
+            'contenu' => 'nullable|string',
+            'auteur_id' => 'nullable|numeric|exists:auteurs,id',
+            'image' => 'nullable|string',
         ]);
 
         if ($validator->fails()) {
@@ -69,6 +72,7 @@ class LivreControlleur extends Controller
             'titre' => $request->titre,
             'nom_interne' => Str::slug($request->titre, '_'),
             'contenu' => $request->contenu,
+            'image' => $request->image,
             'visible' => true,
             'auteur_id' => $request->auteur_id,
         ]);
