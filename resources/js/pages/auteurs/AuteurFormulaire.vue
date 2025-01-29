@@ -5,7 +5,7 @@
                 <div class="card-title">
                     <h2>
                         <i class="fas fa-plus fs-4 align-items-center"></i>
-                        Crée un auteur
+                        {{ $route.meta.title }}
                     </h2>
                 </div>
             </div>

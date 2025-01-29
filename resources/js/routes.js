@@ -19,11 +19,13 @@ const router = createRouter({
             path: "/auteurs/create",
             name: "auteurs.create",
             component: () => import("@/pages/auteurs/AuteurCreate.vue"),
+            meta: { title: "Création d'un auteur" },
         },
         {
             path: "/auteurs/edit/:id",
             name: "auteurs.edit",
             component: () => import("@/pages/auteurs/AuteurEdit.vue"),
+            meta: { title: "Modification d'un auteur" },
         },
 
         // Routes pour la consultation, création et modification des livres
@@ -36,6 +38,13 @@ const router = createRouter({
             path: "/livres/create",
             name: "livres.create",
             component: () => import("@/pages/livres/LivreCreate.vue"),
+            meta: { title: "Création d'un livre" },
+        },
+        {
+            path: "/livres/edit/:id",
+            name: "livres.edit",
+            component: () => import("@/pages/livres/LivreEdit.vue"),
+            meta: { title: "Modification d'un livre" },
         },
     ],
 });
