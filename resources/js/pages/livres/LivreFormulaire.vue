@@ -5,7 +5,7 @@
                 <div class="card-title">
                     <h2>
                         <i class="fas fa-plus fs-4 align-items-center"></i>
-                        Crée un livre
+                        {{ $route.meta.title }}
                     </h2>
                 </div>
             </div>
@@ -138,7 +138,6 @@ const updateOrCreate = () => {
     if (errors.length > 0) {
         return showSuccessErrors(errors, "error");
     }
-    console.log(livre.value);
 
     return emit("updateOrCreate", livre.value);
 };

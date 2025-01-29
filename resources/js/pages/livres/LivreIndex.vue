@@ -8,17 +8,32 @@
                     <span class="card-label fw-bold fs-3 mb-1">Livres</span>
                 </h3>
                 <div class="d-flex align-items-center">
+                    <button
+                        class="btn btn-sm btn-dark mx-2"
+                        @click="edit_view = !edit_view"
+                    >
+                        <i
+                            :class="
+                                edit_view
+                                    ? 'fa-solid fa-eye mx-1 fs-7'
+                                    : 'fa-solid fa-pencil mx-1 fs-7'
+                            "
+                        >
+                        </i>
+                        {{ edit_view ? "Vue globale" : "Modifier un livre" }}
+                    </button>
+
                     <router-link
                         to="/livres/create"
-                        class="btn btn-sm btn-dark"
+                        class="btn btn-sm btn-dark mx-2"
                         title="Ajouter un livre"
                     >
-                        <i class="fa-solid fa-plus"></i>
+                        <i class="fa-solid fa-plus mx-1 fs-6"></i>
                         Ajouter un livre
                     </router-link>
                 </div>
             </div>
-            <section class="m-5">
+            <section class="m-5" v-if="!edit_view && livres.length > 0">
                 <div class="row">
                     <div
                         class="col-sm-12 col-md-6 col-lg-4 mb-4"
@@ -39,13 +54,13 @@
                             <img
                                 class="card-img d-none"
                                 src="https://source.unsplash.com/600x900/?tech,street"
-                                alt="Creative Manner Design Lorem Ipsum Sit Amet Consectetur dipisi?"
                             />
                             <div class="card-img-overlay d-flex flex-column">
                                 <div class="card-body">
                                     <small class="card-meta mb-2">
                                         Type de roman
                                     </small>
+
                                     <h4 class="card-title mt-0">
                                         <span class="text-dark">
                                             {{
@@ -92,6 +107,13 @@
                     </div>
                 </div>
             </section>
+            <editLivreView v-if="edit_view" :livres="livres" />
+            <!-- v-on:refreshData="getData" -->
+            <div v-if="livres.length === 0">
+                <div class="text-center">
+                    <h3 class="text-muted">Aucun livre trouvé</h3>
+                </div>
+            </div>
         </div>
     </loader_card_overlay>
     <ModalLivreShow
@@ -105,6 +127,7 @@
 <script setup>
 import { onMounted, ref, inject } from "vue";
 import ModalLivreShow from "@/pages/livres/ModalLivreShow.vue";
+import editLivreView from "@/pages/livres/editLivreView.vue";
 
 /*
  * Variables
@@ -115,6 +138,7 @@ let loading = ref(true);
 const livres = ref([]);
 const livre_id = ref(null);
 const show_modal = ref(false);
+const edit_view = ref(false);
 
 /*
  * Fonctions

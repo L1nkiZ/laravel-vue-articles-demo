@@ -116,7 +116,17 @@ class LivreControlleur extends Controller
      */
     public function edit($id)
     {
-        //
+        $auteurs = Auteur::select('id', 'nom')
+            ->orderBy('nom', 'asc')
+            ->get();
+
+        $livre = Livre::find($id);
+
+        if ($livre) {
+            return response()->json(compact('livre', 'auteurs'));
+        }
+
+        return response()->json($this->error);
     }
 
     /**
@@ -128,7 +138,31 @@ class LivreControlleur extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'titre' => 'required|string|max:100|unique:livres,titre',
+            'contenu' => 'nullable|string',
+            'auteur_id' => 'nullable|numeric|exists:auteurs,id',
+            'image' => 'nullable|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => true,
+                'message' => $validator->messages()
+            ]);
+        }
+
+        $livre = Livre::find($id);
+
+        if ($livre) {
+            $livre->update($request->all());
+            return response()->json([
+                'error' => false,
+                'message' => 'Le livre a été modifié avec succès',
+            ]);
+        }
+
+        return response()->json($this->error);
     }
 
     /**
