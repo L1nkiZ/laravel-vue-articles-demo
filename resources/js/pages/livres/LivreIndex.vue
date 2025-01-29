@@ -78,7 +78,10 @@
                                         Date de parution
                                     </small>
                                 </div>
-                                <div class="card-footer">
+                                <div
+                                    class="card-footer"
+                                    v-if="objectSize(livre.auteur) > 0"
+                                >
                                     <div class="media">
                                         <img
                                             class="mr-3 rounded-circle"
@@ -107,8 +110,12 @@
                     </div>
                 </div>
             </section>
-            <editLivreView v-if="edit_view" :livres="livres" />
-            <!-- v-on:refreshData="getData" -->
+            <editLivreView
+                v-if="edit_view"
+                :livres="livres"
+                v-on:refreshData="getData"
+            />
+
             <div v-if="livres.length === 0">
                 <div class="text-center">
                     <h3 class="text-muted">Aucun livre trouvé</h3>
@@ -133,6 +140,7 @@ import editLivreView from "@/pages/livres/editLivreView.vue";
  * Variables
  */
 const base_url = inject("base_url");
+const objectSize = inject("objectSize");
 
 let loading = ref(true);
 const livres = ref([]);
@@ -160,6 +168,7 @@ const getData = () => {
         .then((response) => response.data)
         .then((data) => {
             livres.value = data.livres;
+            console.log(data);
         })
         .catch((error) => {
             console.log(error);

@@ -173,6 +173,15 @@ class LivreControlleur extends Controller
      */
     public function destroy($id)
     {
-        //
+        $livre = Livre::find($id);
+
+        if ($livre) {
+            $livre->delete();
+            return response()->json([
+                'error' => false,
+                'message' => 'Le livre a été supprimer',
+            ]);
+        }
+        return response()->json($this->error);
     }
 }

@@ -1,12 +1,3 @@
-<script setup>
-import { ref, defineProps, inject } from "vue";
-const props = defineProps(["livres", "loading"]);
-const base_url = inject("base_url");
-// const emit = defineEmits(["refreshData"]);
-
-const livres = ref(props.livres);
-</script>
-
 <template>
     <div class="card-body py-3">
         <div class="table-responsive">
@@ -26,7 +17,7 @@ const livres = ref(props.livres);
                 </thead>
 
                 <tbody>
-                    <template v-if="livres.length > 0">
+                    <template v-if="objectSize(livres) > 0">
                         <tr v-for="livre in livres">
                             <td class="col-2">
                                 <router-link
@@ -57,7 +48,11 @@ const livres = ref(props.livres);
                                 />
                             </td>
                             <td class="col-2 text-center">
-                                {{ livre.auteur.nom }}
+                                {{
+                                    objectSize(livre.auteur) > 0
+                                        ? livre.auteur.nom
+                                        : "Aucun auteur renseigné"
+                                }}
                             </td>
                             <td class="col-2">
                                 <div
@@ -71,12 +66,12 @@ const livres = ref(props.livres);
                                             <i class="fa-solid fa-pencil"></i>
                                         </span>
                                     </router-link>
-                                    <!-- <delete_data_button
+                                    <delete_data_button
                                         :id="livre.id"
                                         :url="'api/livres'"
-                                        v-on:deleteData="refreshData"
+                                        v-on:deleteData="refreshData(livre.id)"
                                     >
-                                    </delete_data_button> -->
+                                    </delete_data_button>
                                 </div>
                             </td>
                         </tr>
@@ -93,3 +88,18 @@ const livres = ref(props.livres);
         </div>
     </div>
 </template>
+
+<script setup>
+import { ref, defineProps, inject } from "vue";
+const props = defineProps(["livres", "loading"]);
+const base_url = inject("base_url");
+const objectSize = inject("objectSize");
+const emit = defineEmits(["refreshData"]);
+
+const refreshData = (deletedId) => {
+    livres.value = livres.value.filter((livre) => livre.id !== deletedId);
+    emit("refreshData");
+};
+
+const livres = ref(props.livres);
+</script>
