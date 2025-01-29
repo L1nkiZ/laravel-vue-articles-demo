@@ -46,7 +46,7 @@
                                 <input
                                     type="text"
                                     class="form-control form-control-solid"
-                                    :ref="refs['nom']"
+                                    :ref="refs['image']"
                                     v-model="auteur.image"
                                 />
                             </div>
