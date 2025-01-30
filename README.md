@@ -1,4 +1,3 @@
-<!-- PROJECT LOGO -->
 <style>
 h1 {
     font-size: 3em;
@@ -32,7 +31,7 @@ h3 {
     Ce projet est réalisé dans le cadre d'une veille technologique et de potentiel choix de technologie pour l'entreprise R-GDS, dans le cadre de mon alternance avec l'école Ynov Campus Strasbourg - Janv 2025 
 </h4>
 
-Les technologies utilisées sont Laravel 9, Vue.js 3, Bootstrap 5, et FontAwesome.
+Les technologies utilisées sont Laravel 10, Vue.js 3, Bootstrap 5, et FontAwesome.
 
 </div>
 
