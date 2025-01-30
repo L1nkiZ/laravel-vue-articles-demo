@@ -205,7 +205,7 @@ Les composants peuvent également accepter des **props** pour recevoir des donn�
 
 ---
 
-## **Vue Router et Vuex**
+## **Vue Router**
 
 Dans des applications plus complexes, vous pouvez utiliser **Vue Router** pour gérer la navigation entre différentes pages, et **Vuex** pour gérer l'état global de l'application.
 
@@ -214,7 +214,7 @@ Dans des applications plus complexes, vous pouvez utiliser **Vue Router** pour g
 
 Exemple pour Vue Router :
 
-```javascript
+```js
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./components/Home.vue";
@@ -228,4 +228,106 @@ export default new Router({
         { path: "/about", component: About },
     ],
 });
+```
+
+## **Création de Composants Parent et Enfant dans Vue.js**
+
+Voici comment vous pouvez créer des composants parent et enfant dans Vue.js pour transmettre des données du parent à l'enfant :
+
+### **Composant Enfant**
+
+Ce composant recevra des données du composant parent via des props.
+
+```html
+<template>
+    <div>
+        <p>{{ message }}</p>
+    </div>
+</template>
+
+<script setup>
+    import { defineProps } from "vue";
+
+    const props = defineProps({
+        message: {
+            type: String,
+            required: true,
+        },
+    });
+</script>
+```
+
+### **Composant Parent**
+
+Ce composant enverra des données au composant enfant.
+
+```html
+<template>
+    <div>
+        <h1>Composant Parent</h1>
+        <ChildComponent :message="parentMessage" />
+    </div>
+</template>
+
+<script setup>
+    import ChildComponent from "./ChildComponent.vue";
+    import { ref } from "vue";
+
+    const parentMessage = ref("Bonjour de Parent");
+</script>
+```
+
+### **Explication**
+
+-   **Composant Enfant (ChildComponent.vue)** :
+
+    -   Utilise une prop nommée `message` pour recevoir des données du composant parent.
+    -   La prop `message` est de type `String` et est requise.
+
+-   **Composant Parent (ParentComponent.vue)** :
+    -   Importe et utilise le composant enfant.
+    -   Définit une donnée `parentMessage` dans son `data`.
+    -   Passe la donnée `parentMessage` au composant enfant via la prop `message`.
+
+### **Inclusion de Composants Globalement**
+
+Pour inclure des composants globalement, vous pouvez les enregistrer dans votre fichier principal `main.js` ou `main.ts`.
+
+#### **Exemple: Enregistrement Global d'un Bouton**
+
+```js
+import Vue from "vue";
+import App from "./App.vue";
+import MyButton from "./components/MyButton.vue";
+
+Vue.component("MyButton", MyButton);
+
+new Vue({
+    render: (h) => h(App),
+}).$mount("#app");
+```
+
+#### **Exemple: Utilisation de Routes**
+
+Pour configurer les routes dans votre application, vous pouvez utiliser Vue Router. Voici comment inclure des routes globalement :
+
+```js
+import Vue from "vue";
+import Router from "vue-router";
+import Home from "./components/Home.vue";
+import About from "./components/About.vue";
+
+Vue.use(Router);
+
+const router = new Router({
+    routes: [
+        { path: "/", component: Home },
+        { path: "/about", component: About },
+    ],
+});
+
+new Vue({
+    router,
+    render: (h) => h(App),
+}).$mount("#app");
 ```
