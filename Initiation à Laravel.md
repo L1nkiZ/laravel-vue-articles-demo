@@ -23,6 +23,12 @@ h3 {
 
 **Objectif** : Ce mini-cours vous guidera dans les étapes essentielles pour commencer à utiliser Laravel, un framework PHP populaire pour le développement web. Vous apprendrez à installer Laravel, à créer des routes, des contrôleurs, des vues et à utiliser le système d'authentification intégré
 
+## **Présentation de Laravel**
+
+Laravel est un framework PHP open-source conçu pour faciliter le développement d'applications web robustes, évolutives et sécurisées. Il suit l'architecture MVC (Modèle-Vue-Contrôleur).
+
+Laravel est utilisé pour développer des applications web, des API RESTful, des plateformes e-commerce, des CRM, et des systèmes de gestion complexes.
+
 ## 1. **Introduction à Laravel**
 
 Laravel est un framework PHP basé sur le modèle MVC (Modèle-Vue-Contrôleur).

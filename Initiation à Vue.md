@@ -19,7 +19,25 @@ h3 {
 }
 </style>
 
-# Initiation à Vue.js
+# **Initiation à Vue.js**
+
+## **Présentation de Vue.js**
+
+Vue.js est un framework JavaScript progressif utilisé pour construire des interfaces utilisateur dynamiques et réactives. Il est léger, flexible et facile à apprendre, tout en offrant de puissantes fonctionnalités pour développer des applications web modernes.
+
+Contrairement à des frameworks monolithiques\* comme Angular, Vue.js peut être utilisé de manière progressive, que ce soit pour ajouter de l’interactivité à une page ou pour développer une application complète en Single Page Application (SPA).
+
+\*Un framework monolithique est un framework qui offre une solution complète et intégrée pour le développement d’une application, en englobant toutes les fonctionnalités nécessaires dans un seul environnement. Il est conçu pour gérer à la fois le front-end, le back-end, la base de données, la gestion des sessions, l’authentification, etc.
+
+### **Exemples de frameworks monolithiques :**
+
+Terme important **ORM** : Un ORM (Object-Relational Mapping) est un outil qui permet d’interagir avec une base de données en utilisant un langage orienté objet, plutôt qu’en écrivant directement des requêtes SQL.
+
+-   Laravel (PHP) – Gère le routing, l’ORM (Object-Relational Mapping), l’authentification, la gestion des requêtes, etc.
+-   Django (Python) – Inclut une structure complète avec ORM, serveur intégré, sécurité avancée.
+-   Ruby on Rails (Ruby) – Offre une approche tout-en-un pour le développement web.
+-   Angular (JavaScript) – Un framework front-end monolithique, le data-binding, le routing et la gestion d’état.
+-   .NET (C#) – Un framework complet pour le développement d’applications web, desktop et cloud, incluant ASP.NET pour le web, un ORM (Entity Framework), un système d’authentification intégré et une compatibilité multi-plateforme avec .NET Core.
 
 ### **Pré-requis** :
 
